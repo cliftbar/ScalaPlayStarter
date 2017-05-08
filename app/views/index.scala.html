@@ -1,12 +1,21 @@
-@(title:String, message: String)
+@(title:String, message: String)(implicit req: play.api.mvc.RequestHeader)
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>@title</title>
-</head>
-<body>
+@helper.javascriptRouter("jsRoutes")(
+    routes.javascript.XcbAppController.nextCount
+)
+
+@homepage(title) {
+
     <h1>@message</h1>
-</body>
-</html>
+    <button id="test" onclick="myFunction('test')">Click me</button>
+    <script>
+        function myFunction(ele){
+            var data = jsRoutes.controllers.XcbAppController.nextCount().ajax({
+            success: function(data) {
+                alert("User deleted!");
+              }
+            });
+        }
+    </script>
+
+}

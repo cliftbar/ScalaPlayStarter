@@ -3,6 +3,7 @@ package controllers
 import javax.inject._
 import xcb_app._
 import play.api.mvc._
+import play.api.routing._
 
 /**
  * This controller creates an `Action` to handle HTTP requests to the
@@ -21,5 +22,13 @@ class XcbAppController @Inject()(app:xcb_app) extends Controller {
 
   def helloLib = Action {
     Ok(app.libHello)
+  }
+
+  def javascriptRoutes = Action { implicit request =>
+    Ok(
+      JavaScriptReverseRouter("jsRoutes")(
+        routes.javascript.XcbAppController.nextCount
+      )
+    ).as("text/javascript")
   }
 }

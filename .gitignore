@@ -7,6 +7,14 @@ target
 /.settings
 /RUNNING_PID
 
+logs
+project/project
+project/target
+target
+tmp
+dist
+.cache
+
 # Ignore Play! working directory #
 bin/
 /db
